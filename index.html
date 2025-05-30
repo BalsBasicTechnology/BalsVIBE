@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BalsVIBE</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0b0f11;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #0d1317;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      color: #00ffc3;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    header p {
+      color: #aaa;
+      margin: 0.25rem 0 0;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .section-title {
+      color: #00ffc3;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .song-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .song-card {
+      background-color: #1a1f22;
+      padding: 1rem;
+      border-radius: 12px;
+      transition: background 0.3s ease;
+    }
+
+    .song-card:hover {
+      background-color: #1e272b;
+    }
+
+    .song-title {
+      color: #00e6c0;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .song-artist {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .play-button {
+      margin-top: 0.75rem;
+      padding: 0.5rem 1rem;
+      background-color: #00ffc3;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .about {
+      background-color: #101417;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 3rem;
+      color: #ccc;
+    }
+
+    .now-playing {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #121518;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .now-playing div {
+      color: #00ffc3;
+      font-weight: bold;
+    }
+
+    audio {
+      width: 250px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BalsVIBE</h1>
+    <p>Your gateway to free vibes. No sign-up required.</p>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2 class="section-title">Featured Tracks</h2>
+      <div class="song-grid">
+        <div class="song-card">
+          <div class="song-title">Midnight Echo</div>
+          <div class="song-artist">Luna Wave</div>
+          <button class="play-button" onclick="playSong('song1.mp3', 'Midnight Echo', 'Luna Wave')">Play</button>
+        </div>
+        <div class="song-card">
+          <div class="song-title">Neon Skyline</div>
+          <div class="song-artist">Synth Sun</div>
+          <button class="play-button" onclick="playSong('song2.mp3', 'Neon Skyline', 'Synth Sun')">Play</button>
+        </div>
+        <div class="song-card">
+          <div class="song-title">Electric Heart</div>
+          <div class="song-artist">Zynth</div>
+          <button class="play-button" onclick="playSong('song3.mp3', 'Electric Heart', 'Zynth')">Play</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <h3 class="section-title">About BalsVIBE</h3>
+      <p>BalsVIBE is a fresh, free music streaming experience where vibes come first. No need to sign up—just hit play and feel the rhythm. We're building a vibrant platform for indie artists and music lovers.</p>
+    </section>
+  </main>
+
+  <div class="now-playing" id="nowPlayingBar" style="display: none;">
+    <div id="nowPlayingInfo">Now Playing</div>
+    <audio controls id="audioPlayer">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    function playSong(src, title, artist) {
+      const audioPlayer = document.getElementById('audioPlayer');
+      const nowPlayingBar = document.getElementById('nowPlayingBar');
+      const nowPlayingInfo = document.getElementById('nowPlayingInfo');
+
+      audioPlayer.src = src;
+      nowPlayingInfo.innerText = `Now Playing: ${title} - ${artist}`;
+      nowPlayingBar.style.display = 'flex';
+      audioPlayer.play();
+    }
+  </script>
+</body>
+</html>
